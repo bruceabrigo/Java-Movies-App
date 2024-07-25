@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/movies")
 public class MovieController {
@@ -15,8 +17,9 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
     @GetMapping
-    public ResponseEntity<String> getAllMovies() {
-        return new ResponseEntity<String>("All Movies!", HttpStatus.OK);
+    // method returns response entity of type List named movie that returns all movies from DB
+    public ResponseEntity<List<Movie>> getAllMovies() {
+        return new ResponseEntity<List<Movie>>(movieService.allMovies(), HttpStatus.OK);
     }
 
 }
